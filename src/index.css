@@ -49,6 +49,26 @@
   font-size: 1.2rem;
 }
 
+.login {
+  text-decoration: none;
+  color: var(--azul);
+  font-size: 1.2rem;
+}
+
+.login:hover {
+  text-decoration: underline;
+}
+
+.register {
+  text-decoration: none;
+  color: green;
+  font-size: 1.2rem;
+}
+
+.register:hover {
+  text-decoration: underline;
+}
+
 .menu-link:hover {
   text-decoration: underline;
 }
@@ -77,7 +97,7 @@
 
 .producto > img {
   width: 100%;
-  aspect-ratio: 2/1;
+  height: 30rem;
   object-fit: cover;
 }
 
