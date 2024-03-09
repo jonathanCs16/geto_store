@@ -1,0 +1,75 @@
+:root {
+    --negro: #232529;
+    --blanco: #CCD1D5;
+    --gris: #393B40;
+    --azul: #2129b2;
+  }
+
+.padre {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 10px;
+}
+
+.tamaño-imagen {
+    width: 90%;
+    height: 500px;
+    margin-top: 0px;
+}
+
+.estilo-profile {
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    margin: 0 auto;
+    /* margin-top: 20px; */
+    /* margin-bottom: 20px; */
+}
+
+.cajatexto {
+    background-color: #cccccc40;
+    border-color: slategray;
+    border-radius: 30px;
+    width: 100%;
+    padding: 15px;
+    border-width: 0px;
+    margin-bottom: 20px;
+}
+
+.cajatexto:focus {
+    outline: 1px solid var(--azul);
+    box-shadow: 0 0 10px var(--azul);
+}
+
+.btnform {
+    background-color: var(--blanco);
+    color: var(--azul);
+    border: 1px solid var(--azul);
+    border-radius: 30px;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.btnform:hover {
+    background-color: var(--azul);
+    color: white;
+}
+
+.texto {
+    font-size: 20px;
+    color: slategray;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 5px;
+}
+
+.btnswicth {
+    background-color: darkblue;
+    border-radius: 30px;
+    padding: 8px;
+    margin-left: 1rem;
+    border-width: 0px;
+    color: white;
+    font-size: 16px;
+}

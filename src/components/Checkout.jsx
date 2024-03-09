@@ -27,6 +27,7 @@ const Checkout = () => {
         .then((doc) => {
             setPedidoId(doc.id)
             vaciarCarrito();
+            
         })
 
     }

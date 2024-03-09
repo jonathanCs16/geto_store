@@ -1,24 +1,61 @@
-import { useForm } from "react-hook-form"
+import { useState } from 'react';
+import imgLogin from '../assets/login.jpg'
+import imgProfile from "../assets/profile.jpg";
+import '../css/Login.css'
+
+import appFirebase from '../firebase/config'
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
+const auth = getAuth(appFirebase)
 
 const Login = () => {
 
-    const { register, handleSubmit } = useForm();
+  const functAutentication = async(e) => {
+      e.preventDefault();
+      const correo = e.target.email.value;
+      const contraseña = e.target.password.value;
 
-    const enviado = (data) => {
-      console.log(data);
-    }
+      
+      if (registrando) {
+        try {
+            await createUserWithEmailAndPassword(auth, correo, contraseña)
+        } catch (error) {
+          alert("Asegurarte que la contraseña tenga mas de 8 caracteres")
+        }
+      } else {
+        try {
+          await signInWithEmailAndPassword(auth, correo, contraseña)
 
+        } catch (error) {
+            alert("El correo o la contraseña son incorrectas")
+        }
+      }
+  }
+
+
+    const [registrando, setRegistrando] = useState(false)
   return (
     <div className='container'>
-      <h1 className="main-title">Ingresar</h1>
-      <form className='formulario' onSubmit={handleSubmit(enviado)}>
-
-        <input type="text" placeholder='Ingresa email' {...register("email")}/>
-        <input type="password" placeholder='Ingresa contraseña' {...register("contrasena")}/>
-        
-        <button className='enviar' type="submit">Enviar</button>
-      
-      </form>
+      <div className="row">
+          {/* columna mas pequeña */}
+        <div className="col-md-4">
+            <div className="padre">
+              <div className="card card-body shadow-lg">
+                <h1 className='text-center'>{registrando ? "Registrate" : "Inicia Sesion"}</h1>
+                <img src={imgProfile} alt="" className='estilo-profile'/>
+                  <form onSubmit={functAutentication}>
+                    <input type="text" placeholder='Ingresar Email' className='cajatexto' id='email'/>
+                    <input type="password" placeholder='Ingresar Contraseña' className='cajatexto' id='password'/>
+                    <button className='btnform'>{registrando ? "Registrate" : "Inicia Sesion"}</button>
+                  </form>
+                  <h4 className='texto'>{registrando ? "¿Ya tienes cuenta?" : "¿No tienes cuenta?"}<button className='btnswicth' onClick={() => setRegistrando(!registrando)}>{registrando ? "Inicia Sesion" : "Registrate"}</button></h4>
+              </div>
+            </div>
+        </div>
+          {/* columna mas grande */}
+        <div className="col-md-8">
+            <img src={imgLogin} alt="" className='tamaño-imagen'/>
+        </div>
+      </div>
     </div>
   )
 }

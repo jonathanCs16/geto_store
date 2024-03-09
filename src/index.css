@@ -23,17 +23,41 @@
 }
 
 .navbar {
-  padding: 2rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--clr-main);
   border-bottom: 3px solid var(--gris);
+  height: 6rem;
 }
 
 .logo {
   text-decoration: none;
   color: var(--clr-main-light);
+}
+
+.usuario {
+  color: white;
+  font-size: 15px;
+}
+
+.btn-logout {
+  background-color: darkblue;
+  border-radius: 30px;
+  padding: 8px;
+  height: 35px;
+  margin-left: 1rem;
+  border-width: 0px;
+  color: white;
+}
+
+.btn-logout:hover{
+  background-color: red;
+}
+
+.cerrar {
+  font-size: 15px;
 }
 
 .menu {
