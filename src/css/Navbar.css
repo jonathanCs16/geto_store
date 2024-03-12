@@ -1,0 +1,60 @@
+:root {
+    --negro: #232529;
+    --blanco: #CCD1D5;
+    --gris: #393B40;
+    --azul: #4bb5e7;
+  }
+
+.navbar {
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--negro);
+    border-bottom: 3px solid var(--gris);
+    height: 6rem;
+  }
+
+  .car{
+    font-size: 1.5rem;
+  }
+
+  
+  
+  .logo {
+    text-decoration: none;
+    color: var(--blanco);
+  }
+  
+  .usuario {
+    color: white;
+    font-size: 15px;
+  }
+  
+  .menu {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .menu-link {
+    text-decoration: none;
+    color: var(--blanco);
+    font-size: 1.2rem;
+  }
+  
+  .login {
+    text-decoration: none;
+    color: var(--azul);
+    font-size: 1.2rem;
+  }
+  
+  .login:hover {
+    text-decoration: underline;
+  }
+  
+  .menu-link:hover {
+    text-decoration: underline;
+  }
+  

@@ -5,7 +5,6 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Login from './components/Login';
 import Register from './components/Register';
-import Home from './components/Home';
 import Carrito from './components/Carrito';
 import Checkout from './components/Checkout';
 
@@ -32,12 +31,11 @@ function App() {
   return (
 
     <div>
-      {usuario ? (
+      {/* //{usuario ? ( */}
         <CartProvider>
           <BrowserRouter>
-            <Navbar correoUsuario={usuario.email}  />
+            <Navbar   />
             <Routes>
-              {/* <Route path="/" element=/>} /> */}
               <Route path="/" element={<ItemListContainer />} />
               <Route path="/item/:id" element={<ItemDetailContainer />} />
               <Route path="/productos" element={<ItemListContainer />} />
@@ -49,9 +47,9 @@ function App() {
             </Routes>
           </BrowserRouter>
         </CartProvider>
-      ) : (
-        <Login />
-      )}
+      {/* // ) : (
+      //   <Login />
+      // )} */}
     </div>
 
   );

@@ -1,38 +1,52 @@
 import { useState } from 'react';
-import imgLogin from '../assets/login.jpg'
+import imgLogin from '../assets/login.jpg';
 import imgProfile from "../assets/profile.jpg";
-import '../css/Login.css'
+import '../css/Login.css';
 
-import appFirebase from '../firebase/config'
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
-const auth = getAuth(appFirebase)
+import app from '../firebase/config';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+
+const auth = getAuth(app);
+const firestore = getFirestore(app);
 
 const Login = () => {
 
-  const functAutentication = async(e) => {
-      e.preventDefault();
-      const correo = e.target.email.value;
-      const contraseña = e.target.password.value;
+  const [registrando, setRegistrando] = useState(false);
 
-      
+  const functAutentication = async (e) => {
+    e.preventDefault();
+    const correo = e.target.email.value;
+    const contrasena = e.target.password.value;
+
+    try {
       if (registrando) {
-        try {
-            await createUserWithEmailAndPassword(auth, correo, contraseña)
-        } catch (error) {
-          alert("Asegurarte que la contraseña tenga mas de 8 caracteres")
-        }
+        await createUserWithEmailAndPassword(auth, correo, contrasena);
+        const infoUsuario = getAuth().currentUser;
+
+        console.log(infoUsuario.uid, correo, contrasena);
+
+        const docuRef = doc(firestore, `usuarios/${infoUsuario.uid}`);
+        setDoc(docuRef, { correo, contrasena });
+        
       } else {
-        try {
-          await signInWithEmailAndPassword(auth, correo, contraseña)
-
-        } catch (error) {
-            alert("El correo o la contraseña son incorrectas")
-        }
+        await signInWithEmailAndPassword(auth, correo, contrasena);
       }
-  }
+    } catch (error) {
+      if (error.code === 'auth/weak-password') {
+
+        alert("Asegúrate de que la contraseña tenga más de 8 caracteres");
+
+      } else if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+
+        alert("El correo o la contraseña son incorrectos");
+      } else {
+        console.error("Error:", error);
+      }
+    }
+  };
 
 
-    const [registrando, setRegistrando] = useState(false)
   return (
     <div className='container'>
       <div className="row">

@@ -6,10 +6,10 @@
 }
 
 :root {
-  --clr-main: #232529;
-  --clr-main-light: #CCD1D5;
+  --negro: #232529;
+  --blanco: #CCD1D5;
   --gris: #393B40;
-  --azul: #2129b2;
+  --azul: #4bb5e7;
 }
 
 .container {
@@ -22,80 +22,6 @@
   margin-top: 2rem;
 }
 
-.navbar {
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--clr-main);
-  border-bottom: 3px solid var(--gris);
-  height: 6rem;
-}
-
-.logo {
-  text-decoration: none;
-  color: var(--clr-main-light);
-}
-
-.usuario {
-  color: white;
-  font-size: 15px;
-}
-
-.btn-logout {
-  background-color: darkblue;
-  border-radius: 30px;
-  padding: 8px;
-  height: 35px;
-  margin-left: 1rem;
-  border-width: 0px;
-  color: white;
-}
-
-.btn-logout:hover{
-  background-color: red;
-}
-
-.cerrar {
-  font-size: 15px;
-}
-
-.menu {
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.menu-link {
-  text-decoration: none;
-  color: var(--clr-main-light);
-  font-size: 1.2rem;
-}
-
-.login {
-  text-decoration: none;
-  color: var(--azul);
-  font-size: 1.2rem;
-}
-
-.login:hover {
-  text-decoration: underline;
-}
-
-.register {
-  text-decoration: none;
-  color: green;
-  font-size: 1.2rem;
-}
-
-.register:hover {
-  text-decoration: underline;
-}
-
-.menu-link:hover {
-  text-decoration: underline;
-}
 
 .productos {
   display: grid;
@@ -113,7 +39,7 @@
 
 .producto > div {
   padding: 1rem;
-  background-color: var(--clr-main-light);
+  background-color: var(--blanco);
   display: flex;
   flex-direction: column;
   gap: .5rem;
@@ -127,7 +53,7 @@
 
 .producto .ver-mas {
   text-decoration: none;
-  background-color: var(--clr-main);
+  background-color: var(--negro);
   color: white;
   padding: .5rem;
   width: max-content;
@@ -137,7 +63,7 @@
 
 .producto .ver-mas:hover {
   background-color: var(--azul);
-  color: white;
+  color: var(--negro);
 }
 
 .producto-detalle {
@@ -175,7 +101,7 @@
 }
 
 .item-count button, .agregar-al-carrito, .enviar {
-  background-color: var(--clr-main);
+  background-color: var(--negro);
   border: 0;
   width: 2rem;
   height: 2rem;
@@ -188,13 +114,13 @@
   justify-content: center;
   text-align: center;
   line-height: 1;
-  border: 2px solid var(--clr-main);
+  border: 2px solid var(--negro);
   transition: .2s;
 }
 
 .item-count button:hover, .agregar-al-carrito:hover, .enviar:hover {
   background-color: var(--azul);
-  color: var(--clr-main-light);
+  color: var(--negro);
 }
 
 .agregar-al-carrito, .enviar {
@@ -220,6 +146,6 @@
 
 .formulario input:focus {
   outline: 0;
-  border: 2px solid var(--clr-main);
-  outline: 2px solid var(--clr-main);
+  border: 2px solid var(--negro);
+  outline: 2px solid var(--negro);
 }
