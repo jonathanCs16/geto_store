@@ -2,6 +2,7 @@ import ItemCount from "./ItemCount"
 import { toCapital } from './../helpers/toCapital';
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
+import '../css/ItemDetail.css'
 
 
 const ItemDetail = ( {item} ) => {

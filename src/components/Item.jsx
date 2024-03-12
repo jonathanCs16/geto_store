@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import '../css/Item.css'
 
 const Item = ( {producto} ) => {
   return (
-    <div className='producto'>
+    <div className='producto '>
       <img src={producto.imagen} alt={producto.titulo}/>
       <div>
         <h4>{producto.titulo}</h4>

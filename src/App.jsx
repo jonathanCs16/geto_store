@@ -4,7 +4,6 @@ import { CartProvider } from './context/CartContext';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Login from './components/Login';
-import Register from './components/Register';
 import Carrito from './components/Carrito';
 import Checkout from './components/Checkout';
 
@@ -12,6 +11,8 @@ import Checkout from './components/Checkout';
 import app from './firebase/config';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Show from './components/admin/Show';
 
 const auth = getAuth(app)
 
@@ -41,12 +42,12 @@ function App() {
               <Route path="/productos" element={<ItemListContainer />} />
               <Route path="/productos/:categoria" element={<ItemListContainer />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
               <Route path="/carrito" element={<Carrito />} />
               <Route path="/checkout" element={<Checkout />} />
             </Routes>
           </BrowserRouter>
         </CartProvider>
+        <Show />
       {/* // ) : (
       //   <Login />
       // )} */}

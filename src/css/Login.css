@@ -5,6 +5,10 @@
     --azul: #4bb5e7;
   }
 
+  .container {
+    margin-top: 4rem;
+  }
+
 .padre {
     display: flex;
     align-items: center;

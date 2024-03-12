@@ -1,0 +1,76 @@
+
+
+
+.producto-detalle {
+    padding-block: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+  }
+  
+  .producto-detalle img {
+    width: 100%;
+  }
+  
+  .producto-detalle-info h3 {
+    font-size: 2rem;
+  }
+
+  .container {
+    max-width: 1140px;
+    padding-inline: 1.5rem;
+    margin: 0 auto;
+  }
+  
+  .main-title {
+    margin-top: 2rem;
+  }
+  
+  .categoria {
+    font-size: .8rem;
+    color: var(--gris);
+    margin-top: 1rem;
+  }
+  
+  .precio {
+    font-size: 2rem;
+    margin-top: 2rem;
+    font-weight: 600;
+  }
+  
+  .item-count {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .item-count button, .agregar-al-carrito, .enviar {
+    background-color: var(--negro);
+    border: 0;
+    width: 2rem;
+    height: 2rem;
+    color: white;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    border: 2px solid var(--negro);
+    transition: .2s;
+  }
+  
+  .item-count button:hover, .agregar-al-carrito:hover, .enviar:hover {
+    background-color: var(--azul);
+    color: var(--negro);
+  }
+  
+  .agregar-al-carrito, .enviar {
+    width: auto;
+    height: auto;
+    margin-top: 1rem;
+    padding: 1rem;
+  }

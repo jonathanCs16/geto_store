@@ -1,0 +1,45 @@
+.compra {
+    margin: 2rem 0;
+  }
+
+  .compra > p {
+    margin: 0;
+  }
+
+  .btn-vaciar {
+    text-decoration: none;
+    background-color: var(--negro);
+    color: white;
+    padding: .5rem;
+    width: max-content;
+    border-radius: .5rem;
+    transition: .2s;
+  }
+
+  .btn-vaciar:hover{
+    background-color: red;
+  }
+
+  .btn-finalizar {
+    text-decoration: none;
+    background-color: var(--negro);
+    color: white;
+    padding: .5rem;
+    width: max-content;
+    border-radius: .5rem;
+    transition: .2s;
+    margin-left: 2rem;
+  }
+
+  .btn-finalizar:hover {
+    background-color: var(--azul);
+  }
+
+  .btn-finalizar + Link {
+    text-decoration: none;
+  }
+
+  .link-finalizar{
+    text-decoration: none;
+    color: white;
+  }
