@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import imgLogin from '../assets/login.jpg';
-import imgProfile from "../assets/profile.jpg";
-import '../css/Login.css';
+import imgLogin from '../../../assets/login.jpg';
+import imgProfile from "../../../assets/profile.jpg";
+import './Login.css';
 
-import app from '../firebase/config';
+import app from '../../../firebase/config';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
@@ -14,35 +14,34 @@ const Login = () => {
 
   const [registrando, setRegistrando] = useState(false);
 
+  const registrarUsuario = async (correo, contrasena, rol) => {
+
+    const infoUsuario = await createUserWithEmailAndPassword(
+      auth, 
+      correo, 
+      contrasena
+      ).then((usuarioFirebase) => {
+      return usuarioFirebase;
+    });
+
+    console.log(infoUsuario.user.uid);
+    const docuRef = doc(firestore, `usuarios/${infoUsuario.user.uid}`);
+    setDoc(docuRef,{correo: correo, rol: rol});
+
+  }
+
+
   const functAutentication = async (e) => {
     e.preventDefault();
     const correo = e.target.email.value;
     const contrasena = e.target.password.value;
-
-    try {
-      if (registrando) {
-        await createUserWithEmailAndPassword(auth, correo, contrasena);
-        const infoUsuario = getAuth().currentUser;
-
-        console.log(infoUsuario.uid, correo, contrasena);
-
-        const docuRef = doc(firestore, `usuarios/${infoUsuario.uid}`);
-        setDoc(docuRef, { correo, contrasena });
-        
-      } else {
-        await signInWithEmailAndPassword(auth, correo, contrasena);
-      }
-    } catch (error) {
-      if (error.code === 'auth/weak-password') {
-
-        alert("Asegúrate de que la contraseña tenga más de 8 caracteres");
-
-      } else if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-
-        alert("El correo o la contraseña son incorrectos");
-      } else {
-        console.error("Error:", error);
-      }
+    const rol = 'Usuario';
+    
+    if (registrando) {
+      registrarUsuario(correo, contrasena, rol);
+      console.log(correo, contrasena)
+    } else {
+        signInWithEmailAndPassword(auth, correo, contrasena)
     }
   };
 

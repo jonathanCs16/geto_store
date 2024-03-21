@@ -6,24 +6,23 @@
   }
 
 .navbar {
-    padding: 0 2rem;
+    /* padding: 0 30rem; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--negro);
-    border-bottom: 3px solid var(--gris);
+    /* border-bottom: 3px solid var(--gris); */
     height: 6rem;
   }
 
   .car{
     font-size: 1.5rem;
   }
-
-  
   
   .logo {
     text-decoration: none;
     color: var(--blanco);
+    margin-left: 2rem;
   }
   
   .usuario {
@@ -48,6 +47,7 @@
     text-decoration: none;
     color: var(--azul);
     font-size: 1.2rem;
+    margin-right: 2rem;
   }
   
   .login:hover {
