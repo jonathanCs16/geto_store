@@ -7,6 +7,9 @@ import Login from './components/pages/login/Login';
 import Carrito from './components/pages/carrito/Carrito';
 import Checkout from './components/Checkout';
 import Show from './components/admin/Show';
+import Edit from './components/admin/Edit';
+
+
 
 
 //modulos de firebase
@@ -15,6 +18,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import Create from './components/admin/Create';
 
 const auth = getAuth(app);
 const firestore = getFirestore(app);
@@ -24,7 +28,7 @@ function App() {
 
   const [usuario, setUsuario] = useState(null)
 
-  async  function getRol(uid) {
+  async function getRol(uid) {
 
     const docuRef = doc(firestore, `usuarios/${uid}`);
     const docuCifrada = await getDoc(docuRef);
@@ -32,7 +36,7 @@ function App() {
     return infoFinal;
   }
 
-  function SetUserWithFirebaseRol (usuarioFirebase){
+  function SetUserWithFirebaseRol(usuarioFirebase) {
     getRol(usuarioFirebase.uid).then((rol) => {
       const usuarioData = {
         uid: usuarioFirebase.uid,
@@ -47,7 +51,7 @@ function App() {
   onAuthStateChanged(auth, (usuarioFirebase) => {
     if (usuarioFirebase) {
 
-      if(!usuario) {
+      if (!usuario) {
         SetUserWithFirebaseRol(usuarioFirebase);
       }
 
@@ -56,37 +60,35 @@ function App() {
     }
   })
 
-  
+
 
   return (
 
     <div>
-        <CartProvider>
-          <BrowserRouter>
-            <Navbar/>
-            <Routes>
-              <Route path="/" element={<ItemListContainer />} />
-              <Route path="/item/:id" element={<ItemDetailContainer />} />
-              <Route path="/productos" element={<ItemListContainer />} />
-              <Route path="/productos/:categoria" element={<ItemListContainer />} />
-              <Route path="/carrito" element={<Carrito />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route
-              path="/login"
-              element={<Login onLogin={setUsuario} />}
-            />
-            <Route path="/carrito" element={<Carrito />} />
-            <Route path="/checkout" element={<Checkout />} />
-            {usuario ? (
-              < >
-                <Route path="/show" element={<Show usuario={usuario}/>} />
-              </>
+      <CartProvider>
+        <BrowserRouter>
+          <Navbar />
+      {usuario ? (
+          <Routes>
+            <Route path="/" element={<ItemListContainer usuario={usuario}/>} />
+            <Route path="/item/:id" element={<ItemDetailContainer usuario={usuario}/>} />
+            <Route path="/productos" element={<ItemListContainer usuario={usuario}/>} />
+            <Route path="/productos/:categoria" element={<ItemListContainer usuario={usuario}/>} />
+            <Route path="/carrito" element={<Carrito usuario={usuario}/>} />
+            <Route path="/checkout" element={<Checkout usuario={usuario}/>} />
+            <Route path="/login" element={<Login usuario={usuario}/>} />
+            <Route path="/carrito" element={<Carrito usuario={usuario}/>} />
+            <Route path="/checkout" element={<Checkout usuario={usuario}/>} />
+            <Route path="/edit/:id" element={<Edit usuario={usuario}/>} />
+            <Route path="/show" element={<Show usuario={usuario}/>}/>
+            <Route path="/login" element={<Login usuario={usuario}/>} />
+            <Route path="/create" element={<Create usuario={usuario}/>} />
+          </Routes>
             ) : (
-              <Route path="/" element={<ItemListContainer />}/>
-            )}
-            </Routes>
-          </BrowserRouter>
-        </CartProvider>
+              <Login/>
+            )}  
+        </BrowserRouter>
+      </CartProvider>
     </div>
 
   );

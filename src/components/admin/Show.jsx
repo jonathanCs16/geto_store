@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { collection, getDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebase/config'
+import { getAuth, signOut } from 'firebase/auth';
+import app from '../../firebase/config';
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { async } from '@firebase/util'
+import ItemListContainer from '../pages/producto/ItemListContainer';
 const MySwal = withReactContent(Swal)
 
+const auth = getAuth(app);
 
-const Show = () => {
+const Show = ({ usuario }) => {
     const [productos, setProductos] = useState([]);
 
 
@@ -65,6 +69,7 @@ const Show = () => {
         <div className="row">
           <div className="col">
             <div className="d-grid gap-2">
+              <h1>Panel de administrador  <i className="fa-solid fa-user-tie"></i></h1>
               <Link to="/create" className='btn btn-primary mt-2 mb-2'>Crear</Link>
             </div>
             <table className="table table-dark table-hover">
@@ -97,6 +102,8 @@ const Show = () => {
             </table>
           </div>
         </div>
+        <button onClick={() => signOut(auth)}>Cerrar Sesion</button>
+      {usuario.rol === "admin" ? <Show/> : <ItemListContainer />}
       </div>
     </>
   )
