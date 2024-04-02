@@ -10,6 +10,7 @@ const storage = getStorage(app)
 const Create = () => {
   const [titulo, setTitulo] = useState('')
   const [categoria, setCategoria] = useState('')
+  const [descripcion, setDescripcion] = useState('')
   const [stock, setStock] = useState(0)
   const [precio, setPrecio] = useState(0)
   const navigate = useNavigate()
@@ -28,7 +29,8 @@ const Create = () => {
           stock: stock,
           precio: precio,
           categoria: categoria,
-          imagen: urlImDesc
+          imagen: urlImDesc,
+          descripcion: descripcion
         })
         navigate('/show')
         e.target.file.value = '';
@@ -74,6 +76,18 @@ const Create = () => {
                   placeholder='Categoria del producto'
                   value={categoria}
                   onChange={(e) => setCategoria(e.target.value)}
+                  type='text'
+                  className='form-control'
+                />
+              </label>
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label">Descripción
+                <input
+                  placeholder='Descripción del producto'
+                  value={descripcion}
+                  onChange={(e) => setDescripcion(e.target.value)}
                   type='text'
                   className='form-control'
                 />

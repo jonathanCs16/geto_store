@@ -24,10 +24,12 @@
   
   .main-title {
     margin-top: 2rem;
+    text-align: center;
+    font-size: 3rem;
   }
   
   .categoria {
-    font-size: .8rem;
+    font-size: 1rem;
     color: var(--gris);
     margin-top: 1rem;
   }
@@ -57,12 +59,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     line-height: 1;
     border: 2px solid var(--negro);
     transition: .2s;
   }
-  
+
+ 
   .item-count button:hover, .agregar-al-carrito:hover, .enviar:hover {
     background-color: var(--azul);
     color: var(--negro);

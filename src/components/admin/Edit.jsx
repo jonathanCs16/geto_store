@@ -6,6 +6,7 @@ import { db } from '../../firebase/config'
 const Edit = () => {
   const [titulo, setTitulo] = useState('')
   const [categoria, setCategoria] = useState('')
+  const [descripcion, setDescripcion] = useState('')
   const [stock, setStock] = useState(0)
   const [precio, setPrecio] = useState(0)
   const [error, setError] = useState('')
@@ -19,7 +20,7 @@ const Edit = () => {
     setLoading(true)
     try {
       const producto = doc(db, 'productos', id)
-      const data = { titulo, categoria, stock, precio }
+      const data = { titulo, categoria, stock, precio, descripcion }
       await updateDoc(producto, data)
       navigate('/show')
     } catch (error) {
@@ -36,6 +37,7 @@ const Edit = () => {
       if (producto.exists()) {
         setTitulo(producto.data().titulo)
         setCategoria(producto.data().categoria)
+        setDescripcion(producto.data().descripcion)
         setStock(producto.data().stock)
         setPrecio(producto.data().precio)
       } else {
@@ -80,6 +82,18 @@ const Edit = () => {
                   placeholder='Categoria del producto'
                   value={categoria}
                   onChange={(e) => setCategoria(e.target.value)}
+                  type='text'
+                  className='form-control'
+                />
+              </label>
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label">Descripción
+                <input
+                  placeholder='Descripción del producto'
+                  value={descripcion}
+                  onChange={(e) => setDescripcion(e.target.value)}
                   type='text'
                   className='form-control'
                 />

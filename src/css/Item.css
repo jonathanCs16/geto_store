@@ -9,6 +9,7 @@
     margin: 3rem 5rem;
   }
 
+
   .productos {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -32,28 +33,43 @@
     display: flex;
     flex-direction: column;
     gap: .5rem;
+    height: 50%;
     
   }
+
   
   .producto > img {
     width: 100%;
-    height: 22rem;
-    /* object-fit: cover; */
+    height: 20rem;
   }
   
-  .producto .ver-mas {
+  .producto .ver-mas, .corazon {
     text-decoration: none;
-    background-color: blue;
-    color: white;
     padding: .5rem;
-    width: max-content;
+    color: white;
+    background-color: black;
     border-radius: .5rem;
     transition: .2s;
   }
+
+  .corazon{
+    height: 33px;
+    margin-left: 3px;
+    cursor: pointer;
+  }
+
+  .icon {
+    text-align: center;
+    color: white;
+    width: 5rem;
+  }
+
+  .producto .corazon:hover {
+    color: var(--azul);
+  }
   
   .producto .ver-mas:hover {
-    background-color: var(--azul);
-    color: var(--negro);
+    color: var(--azul);
   }
 
   .productos div > p{

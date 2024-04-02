@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { collection, getDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection,  getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebase/config'
 import { getAuth, signOut } from 'firebase/auth';
 import app from '../../firebase/config';
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { async } from '@firebase/util'
-import ItemListContainer from '../pages/producto/ItemListContainer';
 const MySwal = withReactContent(Swal)
 
 const auth = getAuth(app);
@@ -21,11 +19,9 @@ const Show = ({ usuario }) => {
 
     const getProductos = async () => {
        const data = await getDocs(productosCollection)
-      //  console.log(data.docs)
         setProductos(
           data.docs.map( (doc) => ( {...doc.data(), id:doc.id}))
         )
-      // console.log(productos)
     }
 
     const deleteProductos = async (id) => {
@@ -103,7 +99,7 @@ const Show = ({ usuario }) => {
           </div>
         </div>
         <button onClick={() => signOut(auth)}>Cerrar Sesion</button>
-      {usuario.rol === "admin" ? <Show/> : <ItemListContainer />}
+      {usuario?.rol === "admin" }
       </div>
     </>
   )

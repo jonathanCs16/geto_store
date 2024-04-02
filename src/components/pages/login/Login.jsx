@@ -14,6 +14,7 @@ const Login = () => {
 
   const [registrando, setRegistrando] = useState(false);
 
+
   const registrarUsuario = async (correo, contrasena, rol) => {
 
     const infoUsuario = await createUserWithEmailAndPassword(
@@ -27,7 +28,6 @@ const Login = () => {
     console.log(infoUsuario.user.uid);
     const docuRef = doc(firestore, `usuarios/${infoUsuario.user.uid}`);
     setDoc(docuRef,{correo: correo, rol: rol});
-
   }
 
 
@@ -39,9 +39,12 @@ const Login = () => {
     
     if (registrando) {
       registrarUsuario(correo, contrasena, rol);
-      console.log(correo, contrasena)
     } else {
+      try {
         signInWithEmailAndPassword(auth, correo, contrasena)
+      } catch (error) {
+        alert("El correo o la contraseña son incorrectos")
+      }
     }
   };
 
@@ -49,7 +52,6 @@ const Login = () => {
   return (
     <div className='container'>
       <div className="row">
-          {/* columna mas pequeña */}
         <div className="col-md-4">
             <div className="padre">
               <div className="card card-body shadow-lg">

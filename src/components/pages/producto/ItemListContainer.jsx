@@ -3,15 +3,13 @@ import ItemList from '../../ItemList';
 import { useParams } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../../firebase/config';
-import Show from '../../admin/Show';
 
 
 const ItemListContainer = ( ) => {
 
 
   const [productos, setProductos] = useState([]);
-
-
+  const [titulo, setTitulo] = useState("Productos");
   const categoria = useParams().categoria;
 
   useEffect(() => {
@@ -22,6 +20,12 @@ const ItemListContainer = ( ) => {
 
     getDocs(q)
       .then((resp) => {
+
+        if (categoria) {
+          setTitulo(categoria);
+        } else {
+          setTitulo("Productos");
+        }
 
         setProductos(
           resp.docs.map((doc) => {
@@ -35,7 +39,7 @@ const ItemListContainer = ( ) => {
 
   return (
     <div>
-      <ItemList productos={productos} />
+      <ItemList productos={productos}titulo={titulo}/>
     </div>
   )
 }
